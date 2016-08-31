@@ -38,4 +38,52 @@ public class Movil {
 	@JoinColumn(name = "IDTIPOMOVIL")
 	private TipoMovil tipomovil;
 
+	public Integer getIdmovil() {
+		return idmovil;
+	}
+
+	public void setIdmovil(Integer idmovil) {
+		this.idmovil = idmovil;
+	}
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public char getActivo() {
+		return activo;
+	}
+
+	public void setActivo(char activo) {
+		this.activo = activo;
+	}
+
+	public String getAlias() {
+		return alias;
+	}
+
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
+
+	public TipoMovil getTipomovil() {
+		return tipomovil;
+	}
+
+	public void setTipomovil(TipoMovil tipomovil) {
+		this.tipomovil = tipomovil;
+	}
+
 }
