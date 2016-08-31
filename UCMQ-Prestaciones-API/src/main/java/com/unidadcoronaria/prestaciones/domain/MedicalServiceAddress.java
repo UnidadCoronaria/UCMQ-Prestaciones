@@ -11,20 +11,22 @@ import javax.persistence.Table;
 @Entity
 @SequenceGenerator(name = "INC_DOMICILIOPRESTACION", sequenceName = "IDDOMICILIOPRESTACION")
 @Table(name="DOMICILIOSPRESTACIONES")
-public class DomicilioPrestacion {
+public class MedicalServiceAddress {
 	
 	@Id
 	@Column(name = "IDDOMICILIOPRESTACION")
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "INC_DOMICILIOPRESTACION")
-	private Integer iddomicilioprestacion;
+	private Integer medicalServiceAddressId;
 
-	public Integer getIddomicilioprestacion() {
-		return iddomicilioprestacion;
+	public Integer getMedicalServiceAddressId() {
+		return medicalServiceAddressId;
 	}
 
-	public void setIddomicilioprestacion(Integer iddomicilioprestacion) {
-		this.iddomicilioprestacion = iddomicilioprestacion;
+	public void setMedicalServiceAddressId(Integer medicalServiceAddressId) {
+		this.medicalServiceAddressId = medicalServiceAddressId;
 	}
+
+	
 	
 	
 

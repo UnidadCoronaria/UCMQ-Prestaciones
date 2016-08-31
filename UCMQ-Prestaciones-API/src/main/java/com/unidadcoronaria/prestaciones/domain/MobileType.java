@@ -11,33 +11,33 @@ import javax.persistence.Table;
 @Entity
 @SequenceGenerator(name = "INC_TIPOMOVIL", sequenceName = "IDTIPOMOVIL")
 @Table(name="TIPOSDEMOVILES")
-public class TipoMovil {
+public class MobileType {
 	
 	@Id
 	@Column(name = "IDTIPOMOVIL")
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "INC_TIPOMOVIL")
-	private Integer idtipomovil;
+	private Integer mobileTypeId;
 	
 	@Column(name = "NOMBRE")
-	private String nombre;
+	private String name;
 	
 	@Column(name = "ALIAS")
 	private String alias;
 
-	public Integer getIdtipomovil() {
-		return idtipomovil;
+	public Integer getMobileTypeId() {
+		return mobileTypeId;
 	}
 
-	public void setIdtipomovil(Integer idtipomovil) {
-		this.idtipomovil = idtipomovil;
+	public void setMobileTypeId(Integer mobileTypeId) {
+		this.mobileTypeId = mobileTypeId;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getAlias() {
@@ -47,5 +47,7 @@ public class TipoMovil {
 	public void setAlias(String alias) {
 		this.alias = alias;
 	}
+
+	
 
 }

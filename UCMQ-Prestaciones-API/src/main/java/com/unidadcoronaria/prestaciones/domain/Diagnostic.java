@@ -12,64 +12,65 @@ import javax.persistence.Table;
 @Entity
 @SequenceGenerator(name = "INC_DIAGNOSTICO", sequenceName = "IDDIAGNOSTICO")
 @Table(name="DIAGNOSTICOS")
-public class Diagnostico {
+public class Diagnostic {
 	
 	@Id
 	@Column(name = "IDDIAGNOSTICO")
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "INC_DIAGNOSTICO")
-	private Integer iddiagnostico;
+	private Integer diagnosticId;  
 	
 	@Column(name = "NOMBRE")
-	private String nombre;
+	private String name;
 	
-	@Column(name = "DESCRIPCION")
-	private String descripcion;
+	@Column(name = "DESCRIPCION")  
+	private String description;
 	
 	@Column(name = "ACTIVO")
-	private char activo;
+	private char active;
 	
 	@Column(name = "NUMERO")
-	private String numero;
+	private String number;
+
+	public Integer getDiagnosticId() {
+		return diagnosticId;
+	}
+
+	public void setDiagnosticId(Integer diagnosticId) {
+		this.diagnosticId = diagnosticId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public char getActive() {
+		return active;
+	}
+
+	public void setActive(char active) {
+		this.active = active;
+	}
+
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
 	
-	public Integer getIddiagnostico() {
-		return iddiagnostico;
-	}
-
-	public void setIddiagnostico(Integer iddiagnostico) {
-		this.iddiagnostico = iddiagnostico;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public char getActivo() {
-		return activo;
-	}
-
-	public void setActivo(char activo) {
-		this.activo = activo;
-	}
-
-	public String getNumero() {
-		return numero;
-	}
-
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
 	
 	
 	

@@ -12,64 +12,66 @@ import javax.persistence.Table;
 @Entity
 @SequenceGenerator(name = "INC_MEDICAMENTO", sequenceName = "IDMEDICAMENTO")
 @Table(name="MEDICAMENTOS")
-public class Medicamento {
+public class Medicament {
 	
 	@Id
 	@Column(name = "IDMEDICAMENTO")
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "INC_MEDICAMENTO")
-	private Integer idmedicamento;
+	private Integer medicamentId;
 	
 	@Column(name = "NOMBRE")
-	private String nombre;
+	private String name;
 	
 	@Column(name = "NUMERO")
-	private String numero;
+	private String number;
 	
 	@Column(name = "ACTIVO")
-	private char activo;
+	private char active;
 	
 	@Column(name = "TIPO")
-	private String tipo;
+	private String type;
 
-	public Integer getIdmedicamento() {
-		return idmedicamento;
+	public Integer getMedicamentId() {
+		return medicamentId;
 	}
 
-	public void setIdmedicamento(Integer idmedicamento) {
-		this.idmedicamento = idmedicamento;
+	public void setMedicamentId(Integer medicamentId) {
+		this.medicamentId = medicamentId;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getNumero() {
-		return numero;
+	public String getNumber() {
+		return number;
 	}
 
-	public void setNumero(String numero) {
-		this.numero = numero;
+	public void setNumber(String number) {
+		this.number = number;
 	}
 
-	public char getActivo() {
-		return activo;
+	public char getActive() {
+		return active;
 	}
 
-	public void setActivo(char activo) {
-		this.activo = activo;
+	public void setActive(char active) {
+		this.active = active;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public String getType() {
+		return type;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setType(String type) {
+		this.type = type;
 	}
+
+	
 	
 	
 

@@ -22,7 +22,7 @@ public class Recurso {
 	
 	@ManyToOne
 	@JoinColumn(name = "IDMOVIL")
-	private Movil movil;
+	private Mobile mobile;
 	
 	@Column(name = "FUERADESERVICIO")
 	private char fueradeservicio;
@@ -34,15 +34,16 @@ public class Recurso {
 	public void setIdrecurso(Integer idrecurso) {
 		this.idrecurso = idrecurso;
 	}
-
-	public Movil getMovil() {
-		return movil;
+	
+	public Mobile getMobile() {
+		return mobile;
 	}
 
-	public void setMovil(Movil movil) {
-		this.movil = movil;
+	public void setMobile(Mobile mobile) {
+		this.mobile = mobile;
 	}
 
+	
 	public char getFueradeservicio() {
 		return fueradeservicio;
 	}

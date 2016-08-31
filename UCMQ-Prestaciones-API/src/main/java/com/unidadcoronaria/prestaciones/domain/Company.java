@@ -12,41 +12,43 @@ import javax.persistence.Table;
 @Entity
 @SequenceGenerator(name = "INC_EMPRESA", sequenceName = "IDEMPRESA")
 @Table(name="EMPRESAS")
-public class Empresa {
+public class Company {
 	
 	@Id
 	@Column(name = "IDEMPRESA")
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "INC_EMPRESA")
-	private Integer idempresa;
+	private Integer companyId;
 	
 	@Column(name = "NOMBRE")
-	private String nombre;
+	private String name;
 	
 	@Column(name = "NOMBREDEFANTASIA")
-	private String nombredefantasia;
+	private String fantasyName;
 
-	public Integer getIdempresa() {
-		return idempresa;
+	public Integer getCompanyId() {
+		return companyId;
 	}
 
-	public void setIdempresa(Integer idempresa) {
-		this.idempresa = idempresa;
+	public void setCompanyId(Integer companyId) {
+		this.companyId = companyId;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getNombredefantasia() {
-		return nombredefantasia;
+	public String getFantasyName() {
+		return fantasyName;
 	}
 
-	public void setNombredefantasia(String nombredefantasia) {
-		this.nombredefantasia = nombredefantasia;
+	public void setFantasyName(String fantasyName) {
+		this.fantasyName = fantasyName;
 	}
+
+	
 
 }

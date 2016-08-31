@@ -12,8 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.unidadcoronaria.prestaciones.domain.DomicilioPrestacion;
-
 
 @Entity
 @SequenceGenerator(name = "INC_PRESTACION", sequenceName = "IDPRESTACION")
@@ -36,7 +34,7 @@ public class Prestacion {
 	
 	@ManyToOne
 	@JoinColumn(name = "IDDOMICILIOPRESTACION")
-	private DomicilioPrestacion domicilioprestacion;
+	private MedicalServiceAddress medicalServiceAddress;
 	
 	@Column(name = "NOMBRE")
 	private String nombre;
@@ -55,7 +53,7 @@ public class Prestacion {
 	
 	@Column(name = "ESTADO")
 	private String estado;
-	
+
 	public Integer getIdprestacion() {
 		return idprestacion;
 	}
@@ -88,12 +86,12 @@ public class Prestacion {
 		this.telefono = telefono;
 	}
 
-	public DomicilioPrestacion getDomicilioprestacion() {
-		return domicilioprestacion;
+	public MedicalServiceAddress getMedicalServiceAddress() {
+		return medicalServiceAddress;
 	}
 
-	public void setDomicilioprestacion(DomicilioPrestacion domicilioprestacion) {
-		this.domicilioprestacion = domicilioprestacion;
+	public void setMedicalServiceAddress(MedicalServiceAddress medicalServiceAddress) {
+		this.medicalServiceAddress = medicalServiceAddress;
 	}
 
 	public String getNombre() {
@@ -143,7 +141,8 @@ public class Prestacion {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-
+	
+	
 	
 	
 	
