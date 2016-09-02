@@ -1,6 +1,5 @@
 package com.unidadcoronaria.prestaciones.service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class MedicalServiceServiceImpl implements MedicalServiceService {
 
 	@Override
 	public List<MedicalService> getMedicalServiceList() {
-		return Arrays.asList(new MedicalService());
+		return Arrays.asList(new MedicalService(1l));
 	}	
 	
 
