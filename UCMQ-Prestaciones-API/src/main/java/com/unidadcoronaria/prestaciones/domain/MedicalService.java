@@ -20,7 +20,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name="PRESTACIONES")
 public class MedicalService {
 	
-	//private Long id;
 
 	@Id
 	@Column(name = "IDPRESTACION")
@@ -146,4 +145,15 @@ public class MedicalService {
 		this.status = status;
 	}
 	
+	public MedicalService() {
+		super();
+	}
+
+	public MedicalService(Integer medicalServiceId) {
+		super();
+		this.medicalServiceId = medicalServiceId;
+	}
+	
+	
 }
+
