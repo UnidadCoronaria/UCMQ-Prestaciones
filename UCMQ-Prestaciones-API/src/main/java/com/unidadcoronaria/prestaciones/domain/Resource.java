@@ -13,28 +13,28 @@ import javax.persistence.Table;
 @Entity
 @SequenceGenerator(name = "INC_RECURSO", sequenceName = "IDRECURSO")
 @Table(name="RECURSOS")
-public class Recurso {
+public class Resource {
 	
 	@Id
 	@Column(name = "IDRECURSO")
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "INC_RECURSO")
-	private Integer idrecurso;
+	private Integer resourceId;
 	
 	@ManyToOne
 	@JoinColumn(name = "IDMOVIL")
 	private Mobile mobile;
 	
 	@Column(name = "FUERADESERVICIO")
-	private char fueradeservicio;
+	private char outOfService;
 
-	public Integer getIdrecurso() {
-		return idrecurso;
+	public Integer getResourceId() {
+		return resourceId;
 	}
 
-	public void setIdrecurso(Integer idrecurso) {
-		this.idrecurso = idrecurso;
+	public void setResourceId(Integer resourceId) {
+		this.resourceId = resourceId;
 	}
-	
+
 	public Mobile getMobile() {
 		return mobile;
 	}
@@ -43,14 +43,16 @@ public class Recurso {
 		this.mobile = mobile;
 	}
 
-	
-	public char getFueradeservicio() {
-		return fueradeservicio;
+	public char getOutOfService() {
+		return outOfService;
 	}
 
-	public void setFueradeservicio(char fueradeservicio) {
-		this.fueradeservicio = fueradeservicio;
+	public void setOutOfService(char outOfService) {
+		this.outOfService = outOfService;
 	}
+
+	
+
 	
 	
 	
