@@ -22,7 +22,7 @@ public class MedicalServiceServiceImpl implements MedicalServiceService {
 
 	@Override
 	public List<MedicalService> getMedicalServiceList() {
-		return Arrays.asList(new MedicalService(1l));
+		return Arrays.asList();
 	}	
 	
 

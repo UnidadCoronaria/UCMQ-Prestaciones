@@ -6,7 +6,7 @@ import com.unidadcoronaria.prestaciones.domain.MedicalService;
 
 public interface MedicalServiceRepository extends CrudRepository<MedicalService, Long> {
 
-    MedicalService findById(Long id);
+    MedicalService findByMedicalServiceId(Long id);
     
     
 }

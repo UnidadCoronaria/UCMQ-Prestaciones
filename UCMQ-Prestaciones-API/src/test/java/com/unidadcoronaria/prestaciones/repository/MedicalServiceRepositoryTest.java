@@ -26,9 +26,9 @@ public class MedicalServiceRepositoryTest {
 
 	@Test
 	public void testMedicalServiceRepository() throws Exception {
-		repository.save(new MedicalService(1l));
-		repository.save(new MedicalService(2l));
-		repository.save(new MedicalService(3l));
+		repository.save(new MedicalService());
+		repository.save(new MedicalService());
+		repository.save(new MedicalService());
 
 		logger.info("MedicalService found with findAll():");
 		logger.info("-------------------------------");
@@ -45,7 +45,7 @@ public class MedicalServiceRepositoryTest {
 
 		logger.info("MedicalService found with findByLastName('Bauer'):");
 		logger.info("--------------------------------------------");
-		MedicalService medicalService2 = repository.findById(2l);
+		MedicalService medicalService2 = repository.findByMedicalServiceId(2l);
 		logger.info(medicalService2.toString());
 		logger.info("");
 	}
