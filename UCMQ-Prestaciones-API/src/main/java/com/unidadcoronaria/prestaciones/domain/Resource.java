@@ -26,6 +26,10 @@ public class Resource {
 	
 	@Column(name = "FUERADESERVICIO")
 	private char outOfService;
+	
+	@ManyToOne
+	@JoinColumn(name = "IDPAGER")
+	private Device device;
 
 	public Integer getResourceId() {
 		return resourceId;
@@ -49,6 +53,14 @@ public class Resource {
 
 	public void setOutOfService(char outOfService) {
 		this.outOfService = outOfService;
+	}
+
+	public Device getDevice() {
+		return device;
+	}
+
+	public void setDevice(Device device) {
+		this.device = device;
 	}
 
 	
