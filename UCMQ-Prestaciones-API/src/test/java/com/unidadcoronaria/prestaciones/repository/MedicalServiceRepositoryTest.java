@@ -43,10 +43,10 @@ public class MedicalServiceRepositoryTest {
 		logger.info(medicalService.toString());
 		logger.info("");
 
-		//logger.info("MedicalService found with findByLastName('Bauer'):");
-		//logger.info("--------------------------------------------");
-		//MedicalService medicalService2 = repository.findByMedicalServiceId(2l);
-		//logger.info(medicalService2.toString());
-		//logger.info("");
+		logger.info("MedicalService found with findByLastName('Bauer'):");
+		logger.info("--------------------------------------------");
+		MedicalService medicalService2 = repository.findByMedicalServiceId(2l);
+		logger.info(medicalService2.toString());
+		logger.info("");
 	}
 }
