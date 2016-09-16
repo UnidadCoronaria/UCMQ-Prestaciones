@@ -14,6 +14,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @SequenceGenerator(name = "INC_PRESTACION", sequenceName = "IDPRESTACION")
@@ -37,7 +38,7 @@ public class MedicalService {
 	
 	@ManyToOne
 	@JoinColumn(name = "IDDOMICILIOPRESTACION")
-	private MedicalServiceAddress medicalServiceAddress;
+	private AddressMedicalService addressMedicalService;
 	
 	@Column(name = "NOMBRE")
 	private String name;
@@ -56,6 +57,9 @@ public class MedicalService {
 	
 	@Column(name = "ESTADO")
 	private String status;
+	
+	@Column(name = "IDCABINA")
+	private Integer cabinId;
 
 	public Integer getMedicalServiceId() {
 		return medicalServiceId;
@@ -89,12 +93,12 @@ public class MedicalService {
 		this.telephone = telephone;
 	}
 
-	public MedicalServiceAddress getMedicalServiceAddress() {
-		return medicalServiceAddress;
+	public AddressMedicalService getAddressMedicalService() {
+		return addressMedicalService;
 	}
 
-	public void setMedicalServiceAddress(MedicalServiceAddress medicalServiceAddress) {
-		this.medicalServiceAddress = medicalServiceAddress;
+	public void setAddressMedicalService(AddressMedicalService addressMedicalService) {
+		this.addressMedicalService = addressMedicalService;
 	}
 
 	public String getName() {
@@ -145,6 +149,14 @@ public class MedicalService {
 		this.status = status;
 	}
 	
+	public Integer getCabinId() {
+		return cabinId;
+	}
+
+	public void setCabinId(Integer cabinId) {
+		this.cabinId = cabinId;
+	}
+
 	public MedicalService() {
 		super();
 	}
