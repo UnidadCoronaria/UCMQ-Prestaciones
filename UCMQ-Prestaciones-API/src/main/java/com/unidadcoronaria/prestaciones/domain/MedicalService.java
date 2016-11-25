@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
@@ -60,6 +61,10 @@ public class MedicalService {
 	
 	@Column(name = "IDCABINA")
 	private Integer cabinId;
+	
+	//@Transient
+	//@MapKey(name="medicalServiceResourceId")
+	//private Integer medicalServiceResourceId;
 
 	public Integer getMedicalServiceId() {
 		return medicalServiceId;
@@ -156,6 +161,14 @@ public class MedicalService {
 	public void setCabinId(Integer cabinId) {
 		this.cabinId = cabinId;
 	}
+
+	/*public Integer getMedicalServiceResourceId() {
+		return medicalServiceResourceId;
+	}
+
+	public void setMedicalServiceResourceId(Integer medicalServiceResourceId) {
+		this.medicalServiceResourceId = medicalServiceResourceId;
+	}*/
 
 	public MedicalService() {
 		super();

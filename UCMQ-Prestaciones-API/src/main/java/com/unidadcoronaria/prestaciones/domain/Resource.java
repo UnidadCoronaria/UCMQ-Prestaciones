@@ -63,7 +63,9 @@ public class Resource {
 		this.device = device;
 	}
 
-	
+	public Resource() {
+		super();
+	}
 
 	
 	
