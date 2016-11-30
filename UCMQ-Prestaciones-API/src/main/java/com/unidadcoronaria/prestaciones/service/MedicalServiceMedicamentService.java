@@ -4,6 +4,6 @@ import com.unidadcoronaria.prestaciones.domain.MedicalServiceMedicament;
 
 public interface MedicalServiceMedicamentService {
 	
-	public void save(MedicalServiceMedicament medicalServiceMedicament );
+	public MedicalServiceMedicament save(MedicalServiceMedicament medicalServiceMedicament );
 
 }
