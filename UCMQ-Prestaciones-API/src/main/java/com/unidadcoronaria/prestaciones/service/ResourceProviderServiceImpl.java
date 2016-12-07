@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.unidadcoronaria.prestaciones.domain.ResourceProvider;
 import com.unidadcoronaria.prestaciones.repository.ResourceProviderRepository;
 
-@Component("resourceProvider")
+@Component("resourceProviderService")
 @Transactional
 public class ResourceProviderServiceImpl implements ResourceProviderService {
 	

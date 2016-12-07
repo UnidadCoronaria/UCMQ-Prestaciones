@@ -12,5 +12,8 @@ public interface ResourceProviderRepository extends CrudRepository<ResourceProvi
 	
 	@Query("SELECT rp FROM ResourceProvider rp WHERE rp.resource.resourceId = :resourceId")
 	public List<ResourceProvider> findProviderByResourceId(@Param("resourceId") Integer resourceId);
+	
+	@Query(value = "Select R_Nombre From Prst_Typ_GetNombre(:providerId)", nativeQuery = true) 
+	public String getProviderName(@Param("providerId") Integer providerId);
 
 }

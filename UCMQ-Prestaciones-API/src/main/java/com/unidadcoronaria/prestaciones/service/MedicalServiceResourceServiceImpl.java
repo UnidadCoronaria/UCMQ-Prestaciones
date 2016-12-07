@@ -14,7 +14,7 @@ import com.unidadcoronaria.prestaciones.repository.MedicalServiceResourceReposit
 @Transactional
 public class MedicalServiceResourceServiceImpl implements MedicalServiceResourceService {
 	
-	final static Logger logger = Logger.getLogger(MedicalServiceServiceImpl.class);
+	final static Logger logger = Logger.getLogger(MedicalServiceResourceServiceImpl.class);
 	
 	@Autowired
     private MedicalServiceResourceRepository medicalServiceResourceRepository;

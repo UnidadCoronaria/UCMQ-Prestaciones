@@ -13,7 +13,7 @@ import com.unidadcoronaria.prestaciones.repository.MedicalServiceMedicamentRepos
 @Transactional
 public class MedicalServiceMedicamentServiceImpl implements MedicalServiceMedicamentService  {
 	
-	final static Logger logger = Logger.getLogger(MedicalServiceServiceImpl.class);
+	final static Logger logger = Logger.getLogger(MedicalServiceMedicamentServiceImpl.class);
 	
 	@Autowired
     private MedicalServiceMedicamentRepository medicalServiceMedicamentRepository;

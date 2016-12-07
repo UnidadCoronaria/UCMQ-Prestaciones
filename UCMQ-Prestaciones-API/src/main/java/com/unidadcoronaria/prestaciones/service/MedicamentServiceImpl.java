@@ -11,11 +11,11 @@ import com.unidadcoronaria.prestaciones.domain.Medicament;
 import com.unidadcoronaria.prestaciones.repository.MedicamentRepository;
 
 
-@Component("medicament")
+@Component("medicamentService")
 @Transactional
 public class MedicamentServiceImpl implements MedicamentService {
 	
-final static Logger logger = Logger.getLogger(MedicalServiceServiceImpl.class);
+final static Logger logger = Logger.getLogger(MedicamentServiceImpl.class);
 	
 	@Autowired
     private MedicamentRepository medicamentRepository;
