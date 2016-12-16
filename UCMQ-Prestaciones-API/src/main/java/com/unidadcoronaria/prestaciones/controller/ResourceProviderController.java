@@ -30,13 +30,13 @@ public class ResourceProviderController {
 	@Autowired
 	private ResourceService resourceService; 
 	
-	@RequestMapping(value = "/resourcesProviders",  method = RequestMethod.GET)
+	@RequestMapping(value = "/resourceProvider",  method = RequestMethod.GET)
 	@ResponseBody
-	List<ResourceProvider> listResourceProvider(@RequestHeader(value = Constants.AUTHORIZATION_HEADER, required = false) final String token) {
-		this.authorizationService.validateToken("451236200698230");
+	List<ResourceProvider> listResourceProvider(@RequestHeader(value = Constants.AUTHORIZATION_HEADER) final String token) {
+		authorizationService.validateToken(token);
 		Resource resource;
-		resource = this.resourceService.getResourceByImei("451236200698230");
-		return this.resourceProviderService.getResourceProviderId(resource.getResourceId());
+		resource = resourceService.getResourceByImei(token);
+		return resourceProviderService.getResourceProviderId(resource.getResourceId());
 	}
 
 }

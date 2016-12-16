@@ -1,6 +1,5 @@
 package com.unidadcoronaria.prestaciones.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,23 +35,13 @@ public class ProviderController {
 	@Autowired
 	private ProviderService providerService;
 	
-	@RequestMapping(value = "/providersList",  method = RequestMethod.GET)
+	@RequestMapping(value = "/provider",  method = RequestMethod.GET)
 	@ResponseBody
-	List<Provider> listProviders(@RequestHeader(value = Constants.AUTHORIZATION_HEADER, required = false) final String token) {
-		this.authorizationService.validateToken("451236200698230");
-		Resource resource;
-		resource = this.resourceService.getResourceByImei("451236200698230");
-		List<ResourceProvider> resourceProviderList; 
-		resourceProviderList = this.resourceProviderService.getResourceProviderId(resource.getResourceId());
-		List<Provider> providersList = new ArrayList<Provider>();
-		Provider provider = new Provider();
-		
-		for(int i=0;i<resourceProviderList.size();i++){	
-			provider = this.providerService.getProvider(resourceProviderList.get(i).getProviderId());
-			provider.setGuardId(resourceProviderList.get(i).getGuard().getGuardId());		
-			providersList.add(provider);
-		}
-		return providersList;
+	List<Provider> listProviders(@RequestHeader(value = Constants.AUTHORIZATION_HEADER) final String token) {
+		this.authorizationService.validateToken(token);
+		Resource resource = resourceService.getResourceByImei(token);
+		List<ResourceProvider> resourceProviderList = resourceProviderService.getResourceProviderId(resource.getResourceId());		
+		return providerService.listProvider(resourceProviderList);
 	}
 
 }

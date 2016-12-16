@@ -11,25 +11,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.unidadcoronaria.prestaciones.constant.Constants;
-import com.unidadcoronaria.prestaciones.domain.TypeMobileObservation;
+import com.unidadcoronaria.prestaciones.domain.Medicament;
 import com.unidadcoronaria.prestaciones.service.AuthorizationService;
-import com.unidadcoronaria.prestaciones.service.TypeMobileObservationService;
+import com.unidadcoronaria.prestaciones.service.MedicamentService;
 
 @Controller
 @EnableAutoConfiguration
-public class TypeMobileObservationController {
+public class MedicamentController {
 	
 	@Autowired
 	private AuthorizationService authorizationService;
 	
 	@Autowired
-	private TypeMobileObservationService typeMobileObservationService;
+	private MedicamentService medicamentService;
 	
-	@RequestMapping(value = "/typeMobileObservation",  method = RequestMethod.GET)
+	@RequestMapping(value = "/medicament",  method = RequestMethod.GET)
 	@ResponseBody
-	List<TypeMobileObservation> listTypeMobileObservation(@RequestHeader(value = Constants.AUTHORIZATION_HEADER) final String token) {
+	List<Medicament> listMedicament(@RequestHeader(value = Constants.AUTHORIZATION_HEADER) final String token) {
 		this.authorizationService.validateToken(token);
-		return typeMobileObservationService.getTypeMobileObservationList();
+		return medicamentService.getMedicamentList();
 	}
 
 }
