@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.unidadcoronaria.prestaciones.domain.MedicalServiceResource;
+import com.unidadcoronaria.prestaciones.domain.dto.MedicalServiceResourceDTO;
 import com.unidadcoronaria.prestaciones.repository.MedicalServiceResourceRepository;
 
 @Component("medicalServiceResource")
@@ -39,9 +40,9 @@ public class MedicalServiceResourceServiceImpl implements MedicalServiceResource
 		return medicalServiceResourceRepository.getMedicalServicesResourceAuthorizedStates(medicalServiceResourceId);
 	}
 
-	public void setMedicalServicesResourceState(Integer medicalServiceResourceId, Integer state) {
+	public void setMedicalServicesResourceState(MedicalServiceResourceDTO dto) {
 		
-		medicalServiceResourceRepository.setMedicalServicesResourceState(medicalServiceResourceId, state);
+		medicalServiceResourceRepository.setMedicalServicesResourceState(dto.getMedicalServiceResourceId(), dto.getState());
 		
 	}
 

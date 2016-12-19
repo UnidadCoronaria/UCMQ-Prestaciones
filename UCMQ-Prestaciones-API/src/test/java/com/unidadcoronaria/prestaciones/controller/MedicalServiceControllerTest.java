@@ -34,7 +34,7 @@ public class MedicalServiceControllerTest {
 	private WebApplicationContext context;
 
 	@Autowired
-	private MedicalServiceController medicalServiceController;
+	private MedicalServiceResourceController medicalServiceResourceController;
 
 	@Autowired
 	private AuthorizationService authorizationService;
@@ -48,10 +48,10 @@ public class MedicalServiceControllerTest {
 	public void setUp() {
 		authorizationService = (AuthorizationService) context.getBean("authorizationService");
 		authorizationService = Mockito.mock(AuthorizationService.class);
-		ReflectionTestUtils.setField(medicalServiceController, "authorizationService", authorizationService);
+		ReflectionTestUtils.setField(medicalServiceResourceController, "authorizationService", authorizationService);
 		medicalService = (MedicalServiceService) context.getBean("medicalService");
 		medicalService = Mockito.mock(MedicalServiceService.class);
-		ReflectionTestUtils.setField(medicalServiceController, "medicalService", medicalService);
+		ReflectionTestUtils.setField(medicalServiceResourceController, "medicalService", medicalService);
 		MockitoAnnotations.initMocks(this);
 		this.mvc = MockMvcBuilders.webAppContextSetup(this.context).build();
 	}
