@@ -24,4 +24,6 @@ public interface MedicalServiceResourceRepository extends CrudRepository<Medical
     @Query(value = "Execute Procedure PrestRec_PDC_SetEvento(:medicalServiceResourceId, :state)", nativeQuery = true) 
     public void setMedicalServicesResourceState(@Param("medicalServiceResourceId") Integer medicalServiceResourceId, @Param("state") Integer state);
 
+    @Query(value = "Select * From Guardias_PDC_GetPrestRealizadas(:guardId)", nativeQuery = true) 
+    public List<Integer> getAttendedMedicalServicesResource(@Param("guardId") Integer guardId);
 }

@@ -16,5 +16,7 @@ public interface MedicalServiceResourceService {
 	List<Integer> getMedicalServicesResourceAuthorizedStates(Integer medicalServiceResourceId);
 	
 	void setMedicalServicesResourceState(MedicalServiceResourceDTO dto);
+	
+	public List<MedicalServiceResource> getAttendedMedicalServicesList(Integer guardId);
 
 }

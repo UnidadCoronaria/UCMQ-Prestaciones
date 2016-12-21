@@ -22,8 +22,6 @@ public interface MedicalServiceRepository extends CrudRepository<MedicalService,
 	
 	@Query(value = "Select R_IdPrestacion IdPrestacion, R_NumeroDePrestacion NumeroDePrestacion, R_Fecha Fecha, R_Telefono Telefono, R_IdDomicilioPrestacion IdDomicilioPrestacion, R_Nombre Nombre, R_Sexo Sexo, R_Edad Edad, R_Copago Copago, R_CopagoPagado CopagoPagado, R_Estado Estado, R_IdCabina IdCabina, R_IdPrestacionRecurso medicalServiceResourceId From APP_GETPRESTPORRECURSO(:P_IDRECURSO)", nativeQuery = true)
 	public List<MedicalService> findByResource(@Param("P_IDRECURSO") Integer resourceId);
-	
-
-    
+	    
     
 }

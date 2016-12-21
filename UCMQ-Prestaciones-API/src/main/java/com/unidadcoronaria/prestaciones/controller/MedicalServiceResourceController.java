@@ -45,10 +45,17 @@ public class MedicalServiceResourceController {
 
 	@RequestMapping(value = "/medicalServiceResource/pending",  method = RequestMethod.GET)
 	@ResponseBody
-	List<MedicalServiceResource> listMedicalServiceResource(@RequestHeader(value = Constants.AUTHORIZATION_HEADER) final String token) {
+	List<MedicalServiceResource> listMedicalServiceResourcePending(@RequestHeader(value = Constants.AUTHORIZATION_HEADER) final String token) {
 		this.authorizationService.validateToken(token);
 		Resource resource = resourceService.getResourceByImei(token);
 		return this.medicalServiceResourceService.getMedicalServiceResourceList(resource.getResourceId());
+	}
+	
+	@RequestMapping(value = "/medicalServiceResource/{guardId}/attended",  method = RequestMethod.GET)
+	@ResponseBody
+	List<MedicalServiceResource> listMedicalServiceResourceAttended(@PathVariable("guardId") Integer guardId, @RequestHeader(value = Constants.AUTHORIZATION_HEADER) final String token) {
+		this.authorizationService.validateToken(token);		
+		return this.medicalServiceResourceService.getAttendedMedicalServicesList(guardId);
 	}
 	
 	@RequestMapping(value = "/medicalServiceResource/{medicalServiceResourceId}/currentState",  method = RequestMethod.GET)

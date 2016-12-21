@@ -1,5 +1,6 @@
 package com.unidadcoronaria.prestaciones.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.unidadcoronaria.prestaciones.domain.MedicalServiceResource;
 import com.unidadcoronaria.prestaciones.domain.dto.MedicalServiceResourceDTO;
+import com.unidadcoronaria.prestaciones.exception.MedicalServiceNotFoundException;
 import com.unidadcoronaria.prestaciones.repository.MedicalServiceResourceRepository;
 
 @Component("medicalServiceResource")
@@ -43,6 +45,26 @@ public class MedicalServiceResourceServiceImpl implements MedicalServiceResource
 	public void setMedicalServicesResourceState(MedicalServiceResourceDTO dto) {
 		
 		medicalServiceResourceRepository.setMedicalServicesResourceState(dto.getMedicalServiceResourceId(), dto.getState());
+		
+	}
+	
+	public List<MedicalServiceResource> getAttendedMedicalServicesList(Integer guardId) {
+		
+		try {
+		    List<MedicalServiceResource> medicalServiceResourceList = new ArrayList<MedicalServiceResource>();
+		    List<Integer> medicalServiceResourceIdList;
+		    medicalServiceResourceIdList = medicalServiceResourceRepository.getAttendedMedicalServicesResource(guardId);
+		
+		    for(int i=0;i<medicalServiceResourceIdList.size();i++){	
+			    MedicalServiceResource medicalServiceResource = new MedicalServiceResource();
+			    medicalServiceResource = getMedicalServiceResource(medicalServiceResourceIdList.get(i)); 
+			    medicalServiceResourceList.add(medicalServiceResource);	
+		    }
+		 
+		    return medicalServiceResourceList;
+		}catch (Exception e) {
+			throw new MedicalServiceNotFoundException("Error al consultar la DB");	
+		}
 		
 	}
 
