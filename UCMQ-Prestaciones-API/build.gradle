@@ -4,16 +4,19 @@ buildscript {
     }
     repositories {
         mavenCentral()
+        maven { url "http://repo.spring.io/libs-snapshot" }
+        maven { url "http://repo.spring.io/snapshot"}
+        maven { url "http://repo.spring.io/milestone"}
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+    	classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.2.RELEASE")
     }
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
-apply plugin: 'spring-boot'
+apply plugin: 'org.springframework.boot'
 
 
 jar {
@@ -32,6 +35,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-tomcat')
+    compile("org.thymeleaf:thymeleaf-spring4")
+    compile("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect")
     compile('commons-io:commons-io:2.4')
     compile group: 'org.firebirdsql.jdbc', name: 'jaybird-jdk18', version: '2.2.11'
     testCompile('com.h2database:h2')
