@@ -1,11 +1,12 @@
 package com.unidadcoronaria.prestaciones.service;
 
-import com.unidadcoronaria.prestaciones.domain.MobileObservation;
+import java.util.List;
+
 import com.unidadcoronaria.prestaciones.domain.Resource;
 import com.unidadcoronaria.prestaciones.domain.dto.MobileObservationDTO;
 
 public interface MobileObservationService {
 	
-	public MobileObservation save(Resource resource, MobileObservationDTO dto);
+	public void save(Resource resource, Integer guardId, List<MobileObservationDTO> dto);
 
 }

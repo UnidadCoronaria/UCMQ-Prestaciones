@@ -1,8 +1,11 @@
 package com.unidadcoronaria.prestaciones.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,12 +36,12 @@ public class MobileObservationController {
 	@Autowired
 	private ResourceService resourceService;
 	
-	@RequestMapping(value = "/mobileObservation",  method = RequestMethod.POST)
+	@RequestMapping(value = "/mobileObservation/{guardId}",  method = RequestMethod.POST)
 	@ResponseBody
-	void saveMobileObservation(@RequestBody MobileObservationDTO dto, @RequestHeader(value = Constants.AUTHORIZATION_HEADER ) final String token) {
+	void saveMobileObservation(@PathVariable("guardId") Integer guardId, @RequestBody List<MobileObservationDTO> dto, @RequestHeader(value = Constants.AUTHORIZATION_HEADER ) final String token) {
 		this.authorizationService.validateToken(token);
-		Resource resource = resourceService.getResourceByImei("451236200698230");
-		mobileObservationService.save(resource, dto);
+		Resource resource = resourceService.getResourceByImei(token);
+		mobileObservationService.save(resource, guardId, dto);
 	}	
 
 }
