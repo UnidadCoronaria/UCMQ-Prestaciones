@@ -23,13 +23,26 @@ public class MedicalServiceResourceServiceImpl implements MedicalServiceResource
     private MedicalServiceResourceRepository medicalServiceResourceRepository;
 
 	public List<MedicalServiceResource> getMedicalServiceResourceList(Integer resourceId) {
+		List<MedicalServiceResource> medicalServiceResourceList = new ArrayList<MedicalServiceResource>();
+		medicalServiceResourceList = medicalServiceResourceRepository.findByResourceId(resourceId);
 		
-		return medicalServiceResourceRepository.findByResourceId(resourceId);
+		for(int i=0;i<medicalServiceResourceList.size();i++){	
+			Integer currentState = getMedicalServicesResourceCurrentState(medicalServiceResourceList.get(i).getMedicalServiceResourceId());
+			medicalServiceResourceList.get(i).setCurrentState(currentState);
+		}
+		
+		return medicalServiceResourceList;
 	}
 	
 	public MedicalServiceResource getMedicalServiceResource(Integer medicalServiceResourceId) {
+		MedicalServiceResource medicalServiceResource = new MedicalServiceResource();
+		medicalServiceResource = medicalServiceResourceRepository.findByMedicalServiceResourceId(medicalServiceResourceId);
+		Integer currentState = getMedicalServicesResourceCurrentState(medicalServiceResourceId);
+		medicalServiceResource.setCurrentState(currentState);
+		List<Integer> authorizedStates =  getMedicalServicesResourceAuthorizedStates(medicalServiceResourceId);
+		medicalServiceResource.setAuthorizedStates(authorizedStates);
 		
-		return medicalServiceResourceRepository.findByMedicalServiceResourceId(medicalServiceResourceId);
+		return medicalServiceResource;
 	}
 	
 	public Integer getMedicalServicesResourceCurrentState(Integer medicalServiceResourceId) {

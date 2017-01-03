@@ -1,5 +1,7 @@
 package com.unidadcoronaria.prestaciones.domain;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 @Entity
@@ -34,6 +37,12 @@ public class MedicalServiceResource {
 	
 	@Column(name = "PRESTACIONCERRADA")
 	private char closedMedicalService;
+	
+	@Transient
+	private Integer currentState;
+	
+	@Transient
+	private List<Integer> authorizedStates;
 
 	public Integer getMedicalServiceResourceId() {
 		return medicalServiceResourceId;
@@ -73,5 +82,21 @@ public class MedicalServiceResource {
 
 	public void setClosedMedicalService(char closedMedicalService) {
 		this.closedMedicalService = closedMedicalService;
+	}
+
+	public Integer getCurrentState() {
+		return currentState;
+	}
+
+	public void setCurrentState(Integer currentState) {
+		this.currentState = currentState;
+	}
+
+	public List<Integer> getAuthorizedStates() {
+		return authorizedStates;
+	}
+
+	public void setAuthorizedStates(List<Integer> authorizedStates) {
+		this.authorizedStates = authorizedStates;
 	}
 }
