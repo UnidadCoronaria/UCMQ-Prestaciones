@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.unidadcoronaria.prestaciones.domain.MedicalServiceResource;
+import com.unidadcoronaria.prestaciones.domain.dto.CloseMedicalServiceResourceDTO;
 import com.unidadcoronaria.prestaciones.domain.dto.MedicalServiceResourceDTO;
 import com.unidadcoronaria.prestaciones.exception.MedicalServiceNotFoundException;
 import com.unidadcoronaria.prestaciones.repository.MedicalServiceResourceRepository;
@@ -21,6 +22,12 @@ public class MedicalServiceResourceServiceImpl implements MedicalServiceResource
 	
 	@Autowired
     private MedicalServiceResourceRepository medicalServiceResourceRepository;
+	
+	@Autowired
+    private MedicalServiceMedicamentService medicalServiceMedicamentService;
+	
+	@Autowired
+	private MedicalServiceDiagnosticService medicalServiceDiagnosticService;
 
 	public List<MedicalServiceResource> getMedicalServiceResourceList(Integer resourceId) {
 		List<MedicalServiceResource> medicalServiceResourceList = new ArrayList<MedicalServiceResource>();
@@ -80,6 +87,37 @@ public class MedicalServiceResourceServiceImpl implements MedicalServiceResource
 		}
 		
 	}
+	
+	public void closeMedicalServiceResource(CloseMedicalServiceResourceDTO closeMedicalServiceResourceDTO) {
+		try {
+			/*Medicament*/
+			for(int i=0;i<closeMedicalServiceResourceDTO.getListMedicalServiceMedicamentDTO().size();i++){				
+				medicalServiceMedicamentService.save(closeMedicalServiceResourceDTO.getListMedicalServiceMedicamentDTO().get(i));				
+			}
+			
+			/*MedicalServiceId*/
+			Integer medicalServiceId;
+			medicalServiceId = getMedicalServicesId(closeMedicalServiceResourceDTO.getMedicalServiceResourceDTO().getMedicalServiceResourceId());
+			
+			/*Diagnostic*/
+			for(int i=0;i<closeMedicalServiceResourceDTO.getListDiagnosticId().size();i++){
+				medicalServiceDiagnosticService.save(medicalServiceId, closeMedicalServiceResourceDTO.getListDiagnosticId().get(i));
+			}
+			
+			/*Close MedicalService*/
+			setMedicalServicesResourceState(closeMedicalServiceResourceDTO.getMedicalServiceResourceDTO());
+			
+		}catch (Exception e) {
+			throw new MedicalServiceNotFoundException("Error al cerrar la prestación - DB");	
+		}
+		
+	}
+
+	@Override
+	public Integer getMedicalServicesId(Integer medicalServiceResourceId) {
+		return medicalServiceResourceRepository.getMedicalServicesId(medicalServiceResourceId);
+	}
+	
 
 
 

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.unidadcoronaria.prestaciones.constant.Constants;
 import com.unidadcoronaria.prestaciones.domain.MedicalServiceResource;
 import com.unidadcoronaria.prestaciones.domain.Resource;
+import com.unidadcoronaria.prestaciones.domain.dto.CloseMedicalServiceResourceDTO;
 import com.unidadcoronaria.prestaciones.domain.dto.MedicalServiceResourceDTO;
 import com.unidadcoronaria.prestaciones.service.AuthorizationService;
 import com.unidadcoronaria.prestaciones.service.MedicalServiceResourceService;
@@ -84,6 +85,13 @@ public class MedicalServiceResourceController {
 	public MedicalServiceResource getMedicalServiceResourceById(@PathVariable("medicalServiceResourceId") Integer medicalServiceResourceId, @RequestHeader(value = Constants.AUTHORIZATION_HEADER) final String token) {
 		this.authorizationService.validateToken(token);
 		return medicalServiceResourceService.getMedicalServiceResource(medicalServiceResourceId);
+	}
+	
+	@RequestMapping(value = "/medicalServiceResource/close",  method = RequestMethod.PUT)
+	@ResponseBody 
+	void closeMedicalServiceResource(@RequestBody CloseMedicalServiceResourceDTO closeMedicalServiceResourceDTO, @RequestHeader(value = Constants.AUTHORIZATION_HEADER ) final String token) {
+		this.authorizationService.validateToken(token);
+		medicalServiceResourceService.closeMedicalServiceResource(closeMedicalServiceResourceDTO);
 	}
 	
 	

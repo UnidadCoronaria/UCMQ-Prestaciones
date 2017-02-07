@@ -3,6 +3,7 @@ package com.unidadcoronaria.prestaciones.service;
 import java.util.List;
 
 import com.unidadcoronaria.prestaciones.domain.MedicalServiceResource;
+import com.unidadcoronaria.prestaciones.domain.dto.CloseMedicalServiceResourceDTO;
 import com.unidadcoronaria.prestaciones.domain.dto.MedicalServiceResourceDTO;
 
 public interface MedicalServiceResourceService {
@@ -18,5 +19,9 @@ public interface MedicalServiceResourceService {
 	void setMedicalServicesResourceState(MedicalServiceResourceDTO dto);
 	
 	public List<MedicalServiceResource> getAttendedMedicalServicesList(Integer guardId);
+	
+	public void closeMedicalServiceResource(CloseMedicalServiceResourceDTO closeMedicalServiceResourceDTO);
+	
+	Integer getMedicalServicesId(Integer medicalServiceResourceId);
 
 }

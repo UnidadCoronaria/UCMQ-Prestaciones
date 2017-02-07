@@ -26,4 +26,7 @@ public interface MedicalServiceResourceRepository extends CrudRepository<Medical
 
     @Query(value = "Select * From Guardias_PDC_GetPrestRealizadas(:guardId)", nativeQuery = true) 
     public List<Integer> getAttendedMedicalServicesResource(@Param("guardId") Integer guardId);
+    
+    @Query("Select msr.medicalServiceId From MedicalServiceResource msr WHERE msr.medicalServiceResourceId = :medicalServiceResourceId") 
+    public Integer getMedicalServicesId(@Param("medicalServiceResourceId") Integer medicalServiceResourceId);
 }
