@@ -90,10 +90,6 @@ public class MedicalServiceResourceServiceImpl implements MedicalServiceResource
 	
 	public void closeMedicalServiceResource(CloseMedicalServiceResourceDTO closeMedicalServiceResourceDTO) {
 		try {
-			/*Medicament*/
-			for(int i=0;i<closeMedicalServiceResourceDTO.getListMedicalServiceMedicamentDTO().size();i++){				
-				medicalServiceMedicamentService.save(closeMedicalServiceResourceDTO.getListMedicalServiceMedicamentDTO().get(i));				
-			}
 			
 			/*MedicalServiceId*/
 			Integer medicalServiceId;
@@ -104,9 +100,14 @@ public class MedicalServiceResourceServiceImpl implements MedicalServiceResource
 				medicalServiceDiagnosticService.save(medicalServiceId, closeMedicalServiceResourceDTO.getListDiagnosticId().get(i));
 			}
 			
+			/*Medicament*/
+			for(int i=0;i<closeMedicalServiceResourceDTO.getListMedicalServiceMedicamentDTO().size();i++){				
+				medicalServiceMedicamentService.save(closeMedicalServiceResourceDTO.getListMedicalServiceMedicamentDTO().get(i));				
+			}
+			
 			/*Close MedicalService*/
 			setMedicalServicesResourceState(closeMedicalServiceResourceDTO.getMedicalServiceResourceDTO());
-			
+	
 		}catch (Exception e) {
 			throw new MedicalServiceNotFoundException("Error al cerrar la prestación - DB");	
 		}

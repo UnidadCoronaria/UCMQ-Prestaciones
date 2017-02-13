@@ -15,7 +15,7 @@ import com.unidadcoronaria.prestaciones.repository.MedicalServiceDiagnosticRepos
 @Transactional
 public class MedicalServiceDiagnosticServiceImpl implements MedicalServiceDiagnosticService {
 
-final static Logger logger = Logger.getLogger(MedicalServiceDiagnosticServiceImpl.class);
+    final static Logger logger = Logger.getLogger(MedicalServiceDiagnosticServiceImpl.class);
 	
 	@Autowired
     private MedicalServiceDiagnosticRepository medicalServiceDiagnosticRepository;
