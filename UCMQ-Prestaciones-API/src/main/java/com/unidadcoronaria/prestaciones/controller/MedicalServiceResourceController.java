@@ -75,9 +75,10 @@ public class MedicalServiceResourceController {
 	
 	@RequestMapping(value = "/medicalServiceResource/setState",  method = RequestMethod.PUT)
 	@ResponseBody 
-	void setState(@RequestBody MedicalServiceResourceDTO dto, @RequestHeader(value = Constants.AUTHORIZATION_HEADER ) final String token) {
+	public MedicalServiceResource setState(@RequestBody MedicalServiceResourceDTO dto, @RequestHeader(value = Constants.AUTHORIZATION_HEADER ) final String token) {
 		this.authorizationService.validateToken(token);
 		medicalServiceResourceService.setMedicalServicesResourceState(dto);
+		return medicalServiceResourceService.getMedicalServiceResource(dto.getMedicalServiceResourceId());
 	}
 	
 	@RequestMapping(value = "/medicalServiceResource/{medicalServiceResourceId}",  method = RequestMethod.GET)

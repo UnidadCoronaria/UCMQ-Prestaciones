@@ -11,6 +11,6 @@ public interface DeviceMessageService {
 	
 	public List<DeviceMessage> getDeviceMessageList(Integer guardId, Integer deviceId);
 	
-	public void saveDeviceMessage(Integer deviceId, DeviceMessageDTO deviceMessageDTO );
+	public DeviceMessage saveDeviceMessage(Integer deviceId, DeviceMessageDTO deviceMessageDTO );
 
 }

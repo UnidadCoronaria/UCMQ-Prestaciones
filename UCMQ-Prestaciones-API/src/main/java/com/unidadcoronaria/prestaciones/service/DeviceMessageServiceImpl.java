@@ -51,7 +51,7 @@ public class DeviceMessageServiceImpl implements DeviceMessageService {
 		
 	}
 
-	public void saveDeviceMessage(Integer deviceId, DeviceMessageDTO deviceMessageDTO) {
+	public DeviceMessage saveDeviceMessage(Integer deviceId, DeviceMessageDTO deviceMessageDTO) {
 		
 		try {
 			DeviceMessage deviceMessage = new DeviceMessage();
@@ -71,7 +71,7 @@ public class DeviceMessageServiceImpl implements DeviceMessageService {
 			deviceMessage.setGuard(guard);
 			deviceMessage.setSendCallcenter('F');
 			
-			deviceMessageRepository.save(deviceMessage);
+			return deviceMessageRepository.save(deviceMessage);
 			
 		} catch (Exception e) {
 			throw new MedicalServiceNotFoundException("Error saving DeviceMessage into DB");

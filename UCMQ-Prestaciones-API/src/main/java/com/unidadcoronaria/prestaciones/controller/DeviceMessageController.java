@@ -43,9 +43,9 @@ public class DeviceMessageController {
 	
 	@RequestMapping(value = "/deviceMessage/send",  method = RequestMethod.POST)
 	@ResponseBody
-	void sendDeviceMessage(@RequestBody DeviceMessageDTO deviceMessageDTO, @RequestHeader(value = Constants.AUTHORIZATION_HEADER ) final String token) {
+	public DeviceMessage sendDeviceMessage(@RequestBody DeviceMessageDTO deviceMessageDTO, @RequestHeader(value = Constants.AUTHORIZATION_HEADER ) final String token) {
 		this.authorizationService.validateToken(token);
 		Resource resource = resourceService.getResourceByImei(token);
-		deviceMessageService.saveDeviceMessage(resource.getDevice().getDeviceId(), deviceMessageDTO);
+		return deviceMessageService.saveDeviceMessage(resource.getDevice().getDeviceId(), deviceMessageDTO);
 	}
 }

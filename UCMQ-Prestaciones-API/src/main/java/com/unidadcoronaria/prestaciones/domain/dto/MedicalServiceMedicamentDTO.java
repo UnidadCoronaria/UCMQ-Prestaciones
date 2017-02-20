@@ -6,7 +6,6 @@ public class MedicalServiceMedicamentDTO {
 	private Integer medicamentId;
 	private Double amount;
 	
-	
 	public Integer getMedicalServiceResourceId() {
 		return medicalServiceResourceId;
 	}
@@ -26,5 +25,4 @@ public class MedicalServiceMedicamentDTO {
 		this.amount = amount;
 	}
 	
-
 }

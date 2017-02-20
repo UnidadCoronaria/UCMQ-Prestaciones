@@ -36,6 +36,8 @@ public class MedicalServiceResourceServiceImpl implements MedicalServiceResource
 		for(int i=0;i<medicalServiceResourceList.size();i++){	
 			Integer currentState = getMedicalServicesResourceCurrentState(medicalServiceResourceList.get(i).getMedicalServiceResourceId());
 			medicalServiceResourceList.get(i).setCurrentState(currentState);
+			List<Integer> authorizedStates =  getMedicalServicesResourceAuthorizedStates(medicalServiceResourceList.get(i).getMedicalServiceResourceId());
+			medicalServiceResourceList.get(i).setAuthorizedStates(authorizedStates);
 		}
 		
 		return medicalServiceResourceList;
