@@ -16,16 +16,30 @@ public interface MedicalServiceResourceRepository extends CrudRepository<Medical
 	public MedicalServiceResource findByMedicalServiceResourceId(Integer medicalServiceResourceId);
 	
     @Query(value = "Select * From PrestRec_PDC_GetEstadoUbicacion(:medicalServiceResourceId)", nativeQuery = true) 
-    public Integer getMedicalServicesResourceCurrentState(@Param("medicalServiceResourceId") Integer medicalServiceResourceId);
+    public Integer getMedicalServiceResourceCurrentState(@Param("medicalServiceResourceId") Integer medicalServiceResourceId);
     
     @Query(value = "Select * From PrestRec_PDC_GetEventos(:medicalServiceResourceId)", nativeQuery = true) 
-    public List<Integer> getMedicalServicesResourceAuthorizedStates(@Param("medicalServiceResourceId") Integer medicalServiceResourceId);
+    public List<Integer> getMedicalServiceResourceAuthorizedStates(@Param("medicalServiceResourceId") Integer medicalServiceResourceId);
     
-    @Query(value = "Select * From PrestRec_PDC_SetEvento(:medicalServiceResourceId, :state)", nativeQuery = true) 
-    public char setMedicalServicesResourceState(@Param("medicalServiceResourceId") Integer medicalServiceResourceId, @Param("state") Integer state);
+    @Query(value = "Select * From PrestRec_PDC_GetTraslado(:medicalServiceResourceId)", nativeQuery = true) 
+    public Integer getMedicalServiceTransferId(@Param("medicalServiceResourceId") Integer medicalServiceResourceId);
+    
+	@Query(value = "Select * From PrestRec_PDC_SetEvento(:medicalServiceResourceId, :state, :latitude, :longitude)", nativeQuery = true)
+	public char setMedicalServiceResourceState(
+			@Param("medicalServiceResourceId") Integer medicalServiceResourceId,
+			@Param("state") Integer state,
+			@Param("latitude") Double latitude,
+			@Param("longitude") Double longitude);
+	
+	@Query(value = "Select * From PrestTra_PDC_SetEvento(:medicalServiceTransferId, :state, :latitude, :longitude)", nativeQuery = true)
+	public char setMedicalServiceTransferState(
+			@Param("medicalServiceTransferId") Integer medicalServiceTransferId,
+			@Param("state") Integer state,
+			@Param("latitude") Double latitude,
+			@Param("longitude") Double longitude);
 
     @Query(value = "Select * From Guardias_PDC_GetPrestRealizadas(:guardId)", nativeQuery = true) 
-    public List<Integer> getAttendedMedicalServicesResource(@Param("guardId") Integer guardId);
+    public List<Integer> getAttendedMedicalServiceResource(@Param("guardId") Integer guardId);
     
     @Query("Select msr.medicalService.medicalServiceId From MedicalServiceResource msr WHERE msr.medicalServiceResourceId = :medicalServiceResourceId") 
     public Integer getMedicalServicesId(@Param("medicalServiceResourceId") Integer medicalServiceResourceId);

@@ -99,4 +99,6 @@ public class MedicalServiceResource {
 	public void setAuthorizedStates(List<Integer> authorizedStates) {
 		this.authorizedStates = authorizedStates;
 	}
+
+	
 }

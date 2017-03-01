@@ -56,18 +56,29 @@ public class MedicalServiceResourceServiceImpl implements MedicalServiceResource
 	
 	public Integer getMedicalServicesResourceCurrentState(Integer medicalServiceResourceId) {
 		
-		return medicalServiceResourceRepository.getMedicalServicesResourceCurrentState(medicalServiceResourceId);
+		return medicalServiceResourceRepository.getMedicalServiceResourceCurrentState(medicalServiceResourceId);
 	}
 
 	public List<Integer> getMedicalServicesResourceAuthorizedStates(Integer medicalServiceResourceId) {
 		
-		return medicalServiceResourceRepository.getMedicalServicesResourceAuthorizedStates(medicalServiceResourceId);
+		return medicalServiceResourceRepository.getMedicalServiceResourceAuthorizedStates(medicalServiceResourceId);
 	}
 
 	public void setMedicalServicesResourceState(MedicalServiceResourceDTO dto) {
 		
-		medicalServiceResourceRepository.setMedicalServicesResourceState(dto.getMedicalServiceResourceId(), dto.getState());
+		Integer medicalServiceTransferId;
+		medicalServiceTransferId = medicalServiceResourceRepository.getMedicalServiceTransferId(dto.getMedicalServiceResourceId());
 		
+		if (medicalServiceTransferId != null) {
+			
+			medicalServiceResourceRepository.setMedicalServiceTransferState(medicalServiceTransferId, dto.getState(), dto.getLatitude(), dto.getLongitude());
+			
+		} else {
+			
+			medicalServiceResourceRepository.setMedicalServiceResourceState(dto.getMedicalServiceResourceId(), dto.getState(), dto.getLatitude(), dto.getLongitude());
+			
+		}
+				
 	}
 	
 	public List<MedicalServiceResource> getAttendedMedicalServicesList(Integer guardId) {
@@ -75,7 +86,7 @@ public class MedicalServiceResourceServiceImpl implements MedicalServiceResource
 		try {
 		    List<MedicalServiceResource> medicalServiceResourceList = new ArrayList<MedicalServiceResource>();
 		    List<Integer> medicalServiceResourceIdList;
-		    medicalServiceResourceIdList = medicalServiceResourceRepository.getAttendedMedicalServicesResource(guardId);
+		    medicalServiceResourceIdList = medicalServiceResourceRepository.getAttendedMedicalServiceResource(guardId);
 		
 		    for(int i=0;i<medicalServiceResourceIdList.size();i++){	
 			    MedicalServiceResource medicalServiceResource = new MedicalServiceResource();
@@ -120,12 +131,6 @@ public class MedicalServiceResourceServiceImpl implements MedicalServiceResource
 	public Integer getMedicalServicesId(Integer medicalServiceResourceId) {
 		return medicalServiceResourceRepository.getMedicalServicesId(medicalServiceResourceId);
 	}
-	
-
-
-
-	
-	
 	
 
 }
