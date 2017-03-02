@@ -91,9 +91,10 @@ public class MedicalServiceResourceController {
 	
 	@RequestMapping(value = "/medicalServiceResource/close",  method = RequestMethod.PUT)
 	@ResponseBody 
-	void closeMedicalServiceResource(@RequestBody CloseMedicalServiceResourceDTO closeMedicalServiceResourceDTO, @RequestHeader(value = Constants.AUTHORIZATION_HEADER ) final String token) {
+	public MedicalServiceResource closeMedicalServiceResource(@RequestBody CloseMedicalServiceResourceDTO closeMedicalServiceResourceDTO, @RequestHeader(value = Constants.AUTHORIZATION_HEADER ) final String token) {
 		this.authorizationService.validateToken(token);
 		medicalServiceResourceService.closeMedicalServiceResource(closeMedicalServiceResourceDTO);
+		return medicalServiceResourceService.getMedicalServiceResource(closeMedicalServiceResourceDTO.getMedicalServiceResourceDTO().getMedicalServiceResourceId());
 	}
 	
 	
