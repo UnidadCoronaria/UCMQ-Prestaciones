@@ -87,4 +87,11 @@ public class DeviceMessage {
 		this.sendCallcenter = sendCallcenter;
 	}
 	
+	//*funciona**//
+	//@PostPersist
+	//public void deviceMessagePostUpdate() {
+	//	System.out.println("Listening deviceMessage Post Persist");
+	//}
+	
+
 }

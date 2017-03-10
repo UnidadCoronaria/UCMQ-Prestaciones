@@ -5,4 +5,5 @@ public class Constants {
 
 	/** The AUTHORIZATION header to extract from request */
 	public static final String AUTHORIZATION_HEADER = "Authorization";
+	public static final String TOKENGCM_HEADER = "TokenGCM";
 }

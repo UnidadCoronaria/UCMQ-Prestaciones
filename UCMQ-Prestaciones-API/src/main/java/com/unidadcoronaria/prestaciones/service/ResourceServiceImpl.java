@@ -17,11 +17,20 @@ public class ResourceServiceImpl implements ResourceService  {
 	@Autowired
     private ResourceRepository resourceRepository;
 	
+	public Resource getResourceById(Integer resourceId) {
+		return resourceRepository.findByResourceId(resourceId) ;
+	}
 	
 	@Override
 	public Resource getResourceByImei(String imei) {
 		// TODO Auto-generated method stub
 		return resourceRepository.findResourceByImei(imei);
+	}
+	
+	public void updateResource(String imei, String tokenGcm) {
+		Resource resource = getResourceByImei(imei);
+		resource.setTokenGcm(tokenGcm);
+		resourceRepository.save(resource);
 	}
 	
 

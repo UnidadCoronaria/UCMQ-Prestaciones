@@ -13,8 +13,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-
 @Entity
+//@EntityListeners(MedicalServiceResourceListener.class)
 @SequenceGenerator(name = "INC_PRESTACIONRECURSO", sequenceName = "IDPRESTACIONRECURSO")
 @Table(name="PRESTACIONESRECURSOS")
 public class MedicalServiceResource {
@@ -99,6 +99,5 @@ public class MedicalServiceResource {
 	public void setAuthorizedStates(List<Integer> authorizedStates) {
 		this.authorizedStates = authorizedStates;
 	}
-
 	
 }

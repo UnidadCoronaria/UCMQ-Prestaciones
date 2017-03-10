@@ -58,7 +58,7 @@ public class DeviceMessageServiceImpl implements DeviceMessageService {
 			Device device = new Device();
 			Guard guard = new Guard();
 			
-			SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+			SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 			Date date = new Date();
 			
 			device.setDeviceId(deviceId);

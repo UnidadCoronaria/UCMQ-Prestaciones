@@ -31,6 +31,9 @@ public class Resource {
 	@JoinColumn(name = "IDPAGER")
 	private Device device;
 
+	@Column(name = "TOKENGCM")
+	private String tokenGcm;
+
 	public Integer getResourceId() {
 		return resourceId;
 	}
@@ -61,6 +64,14 @@ public class Resource {
 
 	public void setDevice(Device device) {
 		this.device = device;
+	}
+
+	public String getTokenGcm() {
+		return tokenGcm;
+	}
+
+	public void setTokenGcm(String tokenGcm) {
+		this.tokenGcm = tokenGcm;
 	}
 
 	public Resource() {

@@ -8,6 +8,7 @@ import com.unidadcoronaria.prestaciones.domain.Resource;
 
 public interface ResourceRepository extends CrudRepository<Resource, Long> {
 	
+	public Resource findByResourceId(Integer resourceId);
 	
 	@Query("SELECT r FROM Device d, Resource r WHERE r.device.deviceId = d.deviceId AND d.imei = :imei")
 	public Resource findResourceByImei(@Param("imei") String imei);
