@@ -35,7 +35,7 @@ public class MedicalServiceDiagnosticServiceImpl implements MedicalServiceDiagno
 		
 		    return medicalServiceDiagnosticRepository.save(medicalServiceDiagnostic);
 		} catch(Exception e) {
-			throw new MedicalServiceNotFoundException("Error al guardar prestación diagnostico en la DB");    	
+			throw new MedicalServiceNotFoundException("Error saving MedicalService Diagnostic into DB");    	
 		}
 		
 	}

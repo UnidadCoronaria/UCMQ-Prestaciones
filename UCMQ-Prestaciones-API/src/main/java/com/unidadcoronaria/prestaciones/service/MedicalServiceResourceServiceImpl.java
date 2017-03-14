@@ -122,7 +122,7 @@ public class MedicalServiceResourceServiceImpl implements MedicalServiceResource
 			setMedicalServicesResourceState(closeMedicalServiceResourceDTO.getMedicalServiceResourceDTO());
 	
 		}catch (Exception e) {
-			throw new MedicalServiceNotFoundException("Error al cerrar la prestación - DB");	
+			throw new MedicalServiceNotFoundException("Error closing Medical Service - DB");	
 		}
 		
 	}

@@ -62,10 +62,18 @@ public class MedicalService {
 	@Column(name = "IDCABINA")
 	private Integer cabinId;
 	
-	//@Transient
-	//@MapKey(name="medicalServiceResourceId")
-	//private Integer medicalServiceResourceId;
-
+	@Column(name = "COLOR")
+	private String colour;
+	
+	@Column(name = "PROTOCOLOINTERNACION")
+	private char internmentProtocol;
+	
+	@Column(name = "PROTOCOLOECG")
+	private char ecgProtocol;
+	
+	@Column(name = "COPAGOIMPORTE")
+	private Double copaymentAmount;
+	
 	public Integer getMedicalServiceId() {
 		return medicalServiceId;
 	}
@@ -162,13 +170,37 @@ public class MedicalService {
 		this.cabinId = cabinId;
 	}
 
-	/*public Integer getMedicalServiceResourceId() {
-		return medicalServiceResourceId;
+	public String getColour() {
+		return colour;
 	}
 
-	public void setMedicalServiceResourceId(Integer medicalServiceResourceId) {
-		this.medicalServiceResourceId = medicalServiceResourceId;
-	}*/
+	public void setColour(String colour) {
+		this.colour = colour;
+	}
+
+	public char getInternmentProtocol() {
+		return internmentProtocol;
+	}
+
+	public void setInternmentProtocol(char internmentProtocol) {
+		this.internmentProtocol = internmentProtocol;
+	}
+
+	public char getEcgProtocol() {
+		return ecgProtocol;
+	}
+
+	public void setEcgProtocol(char ecgProtocol) {
+		this.ecgProtocol = ecgProtocol;
+	}
+
+	public Double getCopaymentAmount() {
+		return copaymentAmount;
+	}
+
+	public void setCopaymentAmount(Double copaymentAmount) {
+		this.copaymentAmount = copaymentAmount;
+	}
 
 	public MedicalService() {
 		super();

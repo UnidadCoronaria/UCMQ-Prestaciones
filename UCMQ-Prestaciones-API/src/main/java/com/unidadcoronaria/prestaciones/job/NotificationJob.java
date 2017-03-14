@@ -5,6 +5,7 @@ import java.util.concurrent.ExecutionException;
 
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -60,20 +61,38 @@ public class NotificationJob {
 					
 				headers.setContentType(MediaType.APPLICATION_JSON);
 				headers.set("Authorization", "key=AAAAqnmo1uE:APA91bHFaCq61hSRZp6Qd_EELMdyH4C8QL8WSIrLmeIW4jfhHw7FRlb6Tzm2uWCsPkUvP_gNtYUm9EJGVcccbuZ33M7ZHZmNJzBgv8fBFJ9ffXhS41JI5B6xq9CfMQiZdvJ0yvYmCNEW");
-					
-				JSONArray datasets = new JSONArray();
-				JSONObject data = new JSONObject();
-				data.put("id", notificationList.get(i).getId());
-				data.put("type", notificationList.get(i).getTypeOfNotification());
-				datasets.put(data);
-					
-				JSONObject tokenGCM = new JSONObject();
-				tokenGCM.put("to", resource.getTokenGcm());	
-				tokenGCM.put("data", data);
 				
-				HttpEntity<String> entity = new HttpEntity<String>(tokenGCM.toString() ,headers);
-				ListenableFuture<ResponseEntity<String>> resFuture = asycTemp.exchange(url, method, entity, String.class);
+				try {
+					JSONArray datasets = new JSONArray();
+					JSONObject data = new JSONObject();
+					data.put("id", notificationList.get(i).getId());
+					data.put("type", notificationList.get(i).getTypeOfNotification());
+					datasets.put(data);
+						
+					JSONObject tokenGCM = new JSONObject();
+					tokenGCM.put("to", resource.getTokenGcm());	
+					tokenGCM.put("data", data);
+					
+					HttpEntity<String> entity = new HttpEntity<String>(tokenGCM.toString() ,headers);
+					ListenableFuture<ResponseEntity<String>> resFuture = asycTemp.exchange(url, method, entity, String.class);
+					
+					ResponseEntity<String> responseEntity = resFuture.get();
+					if (responseEntity.getStatusCode() == HttpStatus.OK ) {
+						logger.info("Notification sent ID: " + notificationList.get(i).getNotificationId());
+					    notificationService.deleteNotification(notificationList.get(i).getNotificationId());
+					}
+					
+				} catch (JSONException e) {
+					e.printStackTrace();
+			    } catch (InterruptedException e) {
+				    e.printStackTrace();
+			    } catch (ExecutionException e) {
+				    e.printStackTrace();
+			    }
 				
+				
+				
+				/*
 				try {
 					ResponseEntity<String> responseEntity = resFuture.get();
 					if (responseEntity.getStatusCode() == HttpStatus.OK ) {
@@ -84,7 +103,7 @@ public class NotificationJob {
 					e.printStackTrace();
 				} catch (ExecutionException e) {
 					e.printStackTrace();
-				}
+				}*/
 			}	
 		}	
 		

@@ -18,9 +18,8 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 
-
 jar {
-    baseName = 'umcq-prestaciones-rest'
+    baseName = 'puntoDOC-rest'
     version = '1.0.0'
 }
 sourceCompatibility = 1.8
@@ -39,6 +38,7 @@ dependencies {
     compile("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect")
     compile('commons-io:commons-io:2.4')
     compile group: 'org.firebirdsql.jdbc', name: 'jaybird-jdk18', version: '2.2.11'
+    compile group: 'org.json', name: 'json', version: '20090211'
     testCompile('com.h2database:h2')
     testCompile('org.springframework.boot:spring-boot-starter-test') 
 }
