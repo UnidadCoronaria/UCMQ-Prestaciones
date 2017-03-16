@@ -32,6 +32,9 @@ public class AddressMedicalService {
 	@Column(name = "NOMBREENTRECALLE2")
 	private String street2;
 	
+	@Column(name = "REFERENCIAS")
+	private String information;
+	
 	@ManyToOne
 	@JoinColumn(name = "IDLOCALIDAD")
 	private Territory territory;
@@ -80,6 +83,14 @@ public class AddressMedicalService {
 
 	public void setStreet2(String street2) {
 		this.street2 = street2;
+	}
+
+	public String getInformation() {
+		return information;
+	}
+
+	public void setInformation(String information) {
+		this.information = information;
 	}
 
 	public Territory getTerritory() {
