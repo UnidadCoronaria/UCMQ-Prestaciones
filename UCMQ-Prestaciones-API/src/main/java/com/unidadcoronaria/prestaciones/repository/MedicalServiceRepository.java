@@ -11,8 +11,8 @@ import com.unidadcoronaria.prestaciones.domain.Resource;
 
 public interface MedicalServiceRepository extends CrudRepository<MedicalService, Long> {
 
-    
-    public List<MedicalService> findByMedicalServiceId(Integer id);
+	
+    public MedicalService findByMedicalServiceId(Integer id);
     
 	@Query(value = "Select R_IdPrestacion IdPrestacion, R_NumeroDePrestacion NumeroDePrestacion, R_Fecha Fecha, R_Telefono Telefono, R_IdDomicilioPrestacion IdDomicilioPrestacion, R_Nombre Nombre, R_Sexo Sexo, R_Edad Edad, R_Copago Copago, R_CopagoPagado CopagoPagado, R_Estado Estado, R_IdCabina IdCabina From APPANDROID(:P_ESTADO)", nativeQuery = true)
 	public List<MedicalService> findByStatus(@Param("P_ESTADO") String estado);

@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.unidadcoronaria.prestaciones.domain.MedicalService;
 import com.unidadcoronaria.prestaciones.domain.MedicalServiceResource;
 import com.unidadcoronaria.prestaciones.domain.dto.CloseMedicalServiceResourceDTO;
 import com.unidadcoronaria.prestaciones.domain.dto.MedicalServiceResourceDTO;
 import com.unidadcoronaria.prestaciones.exception.MedicalServiceNotFoundException;
+import com.unidadcoronaria.prestaciones.repository.MedicalServiceRepository;
 import com.unidadcoronaria.prestaciones.repository.MedicalServiceResourceRepository;
 
 @Component("medicalServiceResource")
@@ -28,7 +30,13 @@ public class MedicalServiceResourceServiceImpl implements MedicalServiceResource
 	
 	@Autowired
 	private MedicalServiceDiagnosticService medicalServiceDiagnosticService;
-
+	
+	@Autowired
+    private MedicalServiceService medicalServiceService;
+	
+	@Autowired
+    private MedicalServiceRepository medicalServiceRepository;
+	
 	public List<MedicalServiceResource> getMedicalServiceResourceList(Integer resourceId) {
 		List<MedicalServiceResource> medicalServiceResourceList = new ArrayList<MedicalServiceResource>();
 		medicalServiceResourceList = medicalServiceResourceRepository.findByResourceId(resourceId);
@@ -116,6 +124,20 @@ public class MedicalServiceResourceServiceImpl implements MedicalServiceResource
 			/*Medicament*/
 			for(int i=0;i<closeMedicalServiceResourceDTO.getListMedicalServiceMedicamentDTO().size();i++){				
 				medicalServiceMedicamentService.save(closeMedicalServiceResourceDTO.getListMedicalServiceMedicamentDTO().get(i));				
+			}
+			
+			/*ECG*/
+			if (closeMedicalServiceResourceDTO.getEcg() == 'T') {
+				MedicalService medicalService = medicalServiceService.getMedicalServiceById(medicalServiceId);
+				medicalService.setEcg(closeMedicalServiceResourceDTO.getEcg());
+				medicalServiceRepository.save(medicalService);
+			}
+			
+			/*Copayment*/
+			if (closeMedicalServiceResourceDTO.getCopaymentPaid() == 'T') {
+				MedicalService medicalService = medicalServiceService.getMedicalServiceById(medicalServiceId);
+				medicalService.setCopaymentPaid(closeMedicalServiceResourceDTO.getCopaymentPaid());
+				medicalServiceRepository.save(medicalService);
 			}
 			
 			/*Close MedicalService*/

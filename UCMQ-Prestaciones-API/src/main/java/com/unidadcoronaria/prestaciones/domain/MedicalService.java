@@ -69,7 +69,10 @@ public class MedicalService {
 	private char internmentProtocol;
 	
 	@Column(name = "PROTOCOLOECG")
-	private char ecgProtocol;
+	private char ecgProtocol;  
+	
+	@Column(name = "ECG")
+	private char ecg;
 	
 	@Column(name = "COPAGOIMPORTE")
 	private Double copaymentAmount;
@@ -192,6 +195,14 @@ public class MedicalService {
 
 	public void setEcgProtocol(char ecgProtocol) {
 		this.ecgProtocol = ecgProtocol;
+	}
+
+	public char getEcg() {
+		return ecg;
+	}
+
+	public void setEcg(char ecg) {
+		this.ecg = ecg;
 	}
 
 	public Double getCopaymentAmount() {

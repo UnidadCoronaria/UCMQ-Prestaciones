@@ -46,6 +46,9 @@ public class MedicalServiceServiceImpl implements MedicalServiceService {
 		return medicalServiceRepository.findResourceIdByImei(imei);
 	}
 	
+	public MedicalService getMedicalServiceById(Integer medicalServiceId){
+		return medicalServiceRepository.findByMedicalServiceId(medicalServiceId);
+	}
 
 }
 

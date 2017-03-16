@@ -7,6 +7,8 @@ public class CloseMedicalServiceResourceDTO {
 	private List<MedicalServiceMedicamentDTO> listMedicalServiceMedicamentDTO;
 	private List<Integer> listDiagnosticId;
 	private MedicalServiceResourceDTO medicalServiceResourceDTO;
+	private char copaymentPaid;
+	private char ecg;
 	
 	public List<MedicalServiceMedicamentDTO> getListMedicalServiceMedicamentDTO() {
 		return listMedicalServiceMedicamentDTO;
@@ -27,6 +29,18 @@ public class CloseMedicalServiceResourceDTO {
 	public void setMedicalServiceResourceDTO(
 			MedicalServiceResourceDTO medicalServiceResourceDTO) {
 		this.medicalServiceResourceDTO = medicalServiceResourceDTO;
+	}
+	public char getCopaymentPaid() {
+		return copaymentPaid;
+	}
+	public void setCopaymentPaid(char copaymentPaid) {
+		this.copaymentPaid = copaymentPaid;
+	}
+	public char getEcg() {
+		return ecg;
+	}
+	public void setEcg(char ecg) {
+		this.ecg = ecg;
 	}
 	                          
 

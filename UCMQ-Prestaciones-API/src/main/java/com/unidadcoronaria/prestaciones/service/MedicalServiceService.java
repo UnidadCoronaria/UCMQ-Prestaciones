@@ -13,4 +13,6 @@ public interface MedicalServiceService {
 	
 	Resource getResourceIdByImei(String imei);
 	
+	public MedicalService getMedicalServiceById(Integer medicalServiceId);
+	
 }
