@@ -9,10 +9,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.unidadcoronaria.prestaciones.domain.MedicalService;
+import com.unidadcoronaria.prestaciones.domain.MedicalServiceCallReason;
 import com.unidadcoronaria.prestaciones.domain.MedicalServiceResource;
 import com.unidadcoronaria.prestaciones.domain.dto.CloseMedicalServiceResourceDTO;
 import com.unidadcoronaria.prestaciones.domain.dto.MedicalServiceResourceDTO;
 import com.unidadcoronaria.prestaciones.exception.MedicalServiceNotFoundException;
+import com.unidadcoronaria.prestaciones.repository.MedicalServiceCallReasonRepository;
 import com.unidadcoronaria.prestaciones.repository.MedicalServiceRepository;
 import com.unidadcoronaria.prestaciones.repository.MedicalServiceResourceRepository;
 
@@ -37,18 +39,28 @@ public class MedicalServiceResourceServiceImpl implements MedicalServiceResource
 	@Autowired
     private MedicalServiceRepository medicalServiceRepository;
 	
+	@Autowired
+    private MedicalServiceCallReasonRepository medicalServiceCallReasonRepository;
+	
 	public List<MedicalServiceResource> getMedicalServiceResourceList(Integer resourceId) {
-		List<MedicalServiceResource> medicalServiceResourceList = new ArrayList<MedicalServiceResource>();
-		medicalServiceResourceList = medicalServiceResourceRepository.findByResourceId(resourceId);
-		
-		for(int i=0;i<medicalServiceResourceList.size();i++){	
-			Integer currentState = getMedicalServicesResourceCurrentState(medicalServiceResourceList.get(i).getMedicalServiceResourceId());
-			medicalServiceResourceList.get(i).setCurrentState(currentState);
-			List<Integer> authorizedStates =  getMedicalServicesResourceAuthorizedStates(medicalServiceResourceList.get(i).getMedicalServiceResourceId());
-			medicalServiceResourceList.get(i).setAuthorizedStates(authorizedStates);
+		try {
+
+			List<MedicalServiceResource> medicalServiceResourceList = new ArrayList<MedicalServiceResource>();
+			medicalServiceResourceList = medicalServiceResourceRepository.findByResourceId(resourceId);
+
+			for (int i = 0; i < medicalServiceResourceList.size(); i++) {
+				Integer currentState = getMedicalServicesResourceCurrentState(medicalServiceResourceList.get(i).getMedicalServiceResourceId());
+				medicalServiceResourceList.get(i).setCurrentState(currentState);
+				List<Integer> authorizedStates = getMedicalServicesResourceAuthorizedStates(medicalServiceResourceList.get(i).getMedicalServiceResourceId());
+				medicalServiceResourceList.get(i).setAuthorizedStates(authorizedStates);
+				List<MedicalServiceCallReason> medicalServiceCallReasonList = medicalServiceCallReasonRepository.getMedicalServiceCallReasonByMedicalServiceId(medicalServiceResourceList.get(i).getMedicalService().getMedicalServiceId());
+				medicalServiceResourceList.get(i).setMedicalServiceCallReason(medicalServiceCallReasonList);
+				medicalServiceResourceList.get(i).setPlanDetail(medicalServiceResourceRepository.getPlanDetail(medicalServiceResourceList.get(i).getMedicalService().getMedicalServiceId()));
+			}
+			return medicalServiceResourceList;
+		} catch (Exception e) {
+			throw new MedicalServiceNotFoundException("MedicalServiceResource Database query error");
 		}
-		
-		return medicalServiceResourceList;
 	}
 	
 	public MedicalServiceResource getMedicalServiceResource(Integer medicalServiceResourceId) {

@@ -77,6 +77,9 @@ public class MedicalService {
 	@Column(name = "COPAGOIMPORTE")
 	private Double copaymentAmount;
 	
+	@Column(name = "NOTAS")
+	private String note;
+	
 	public Integer getMedicalServiceId() {
 		return medicalServiceId;
 	}
@@ -211,6 +214,14 @@ public class MedicalService {
 
 	public void setCopaymentAmount(Double copaymentAmount) {
 		this.copaymentAmount = copaymentAmount;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
 	}
 
 	public MedicalService() {

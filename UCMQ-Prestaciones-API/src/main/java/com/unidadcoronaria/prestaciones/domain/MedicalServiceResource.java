@@ -43,7 +43,13 @@ public class MedicalServiceResource {
 	
 	@Transient
 	private List<Integer> authorizedStates;
-
+	
+	@Transient
+	private List<MedicalServiceCallReason> medicalServiceCallReason;
+	
+	@Transient
+	private String planDetail;
+	
 	public Integer getMedicalServiceResourceId() {
 		return medicalServiceResourceId;
 	}
@@ -99,5 +105,22 @@ public class MedicalServiceResource {
 	public void setAuthorizedStates(List<Integer> authorizedStates) {
 		this.authorizedStates = authorizedStates;
 	}
-	
+
+	public List<MedicalServiceCallReason> getMedicalServiceCallReason() {
+		return medicalServiceCallReason;
+	}
+
+	public void setMedicalServiceCallReason(
+			List<MedicalServiceCallReason> medicalServiceCallReason) {
+		this.medicalServiceCallReason = medicalServiceCallReason;
+	}
+
+	public String getPlanDetail() {
+		return planDetail;
+	}
+
+	public void setPlanDetail(String planDetail) {
+		this.planDetail = planDetail;
+	}
+
 }
