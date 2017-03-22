@@ -10,9 +10,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @SequenceGenerator(name = "INC_PRESTACIONMOTIVOLLAMADO", sequenceName = "IDPRESTACIONMOTIVOLLAMADO")
 @Table(name="PRESTACIONESMOTIVOSDELLAMADO")
+@JsonIgnoreProperties(value = { "medicalService" })
 public class MedicalServiceCallReason {
 	
 	@Id
@@ -39,7 +42,7 @@ public class MedicalServiceCallReason {
 	public MedicalService getMedicalService() {
 		return medicalService;
 	}
-
+  
 	public void setMedicalService(MedicalService medicalService) {
 		this.medicalService = medicalService;
 	}
