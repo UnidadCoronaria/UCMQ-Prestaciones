@@ -70,6 +70,9 @@ public class MedicalServiceResourceServiceImpl implements MedicalServiceResource
 		medicalServiceResource.setCurrentState(currentState);
 		List<Integer> authorizedStates =  getMedicalServicesResourceAuthorizedStates(medicalServiceResourceId);
 		medicalServiceResource.setAuthorizedStates(authorizedStates);
+		List<MedicalServiceCallReason> medicalServiceCallReasonList = medicalServiceCallReasonRepository.getMedicalServiceCallReasonByMedicalServiceId(medicalServiceResource.getMedicalService().getMedicalServiceId());
+		medicalServiceResource.setMedicalServiceCallReason(medicalServiceCallReasonList);
+		medicalServiceResource.setPlanDetail(medicalServiceResourceRepository.getPlanDetail(medicalServiceResource.getMedicalService().getMedicalServiceId()));
 		
 		return medicalServiceResource;
 	}
@@ -110,7 +113,7 @@ public class MedicalServiceResourceServiceImpl implements MedicalServiceResource
 		
 		    for(int i=0;i<medicalServiceResourceIdList.size();i++){	
 			    MedicalServiceResource medicalServiceResource = new MedicalServiceResource();
-			    medicalServiceResource = getMedicalServiceResource(medicalServiceResourceIdList.get(i)); 
+			    medicalServiceResource = getMedicalServiceResource(medicalServiceResourceIdList.get(i));
 			    medicalServiceResourceList.add(medicalServiceResource);	
 		    }
 		 
