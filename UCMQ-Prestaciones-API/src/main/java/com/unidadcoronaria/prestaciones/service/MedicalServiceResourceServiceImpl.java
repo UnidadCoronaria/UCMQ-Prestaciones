@@ -169,5 +169,9 @@ public class MedicalServiceResourceServiceImpl implements MedicalServiceResource
 		return medicalServiceResourceRepository.getMedicalServicesId(medicalServiceResourceId);
 	}
 	
+	public void setMedicalServiceResourceReceived(Integer medicalServiceResourceId, char received) {
+		medicalServiceResourceRepository.setMedicalServiceResourceReceived(medicalServiceResourceId, received);
+	}
+;	
 
 }

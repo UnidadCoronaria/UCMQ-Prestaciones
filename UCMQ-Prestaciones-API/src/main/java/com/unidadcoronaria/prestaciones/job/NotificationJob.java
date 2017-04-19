@@ -19,9 +19,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.web.client.AsyncRestTemplate;
 
+import com.unidadcoronaria.prestaciones.domain.DeviceMessage;
 import com.unidadcoronaria.prestaciones.domain.MedicalServiceResource;
 import com.unidadcoronaria.prestaciones.domain.Notification;
 import com.unidadcoronaria.prestaciones.domain.Resource;
+import com.unidadcoronaria.prestaciones.service.DeviceMessageService;
 import com.unidadcoronaria.prestaciones.service.MedicalServiceResourceService;
 import com.unidadcoronaria.prestaciones.service.NotificationService;
 import com.unidadcoronaria.prestaciones.service.ResourceService;
@@ -38,6 +40,9 @@ public class NotificationJob {
 	ResourceService resourceService;
 	
 	@Autowired
+	DeviceMessageService deviceMessageService;
+	
+	@Autowired
 	private MedicalServiceResourceService medicalServiceResourceService;
 
 	@Scheduled(fixedRate = 20000)
@@ -47,11 +52,25 @@ public class NotificationJob {
 		
 		if (notificationList != null) {
 
-			MedicalServiceResource medicalServiceResource; 
+			//MedicalServiceResource medicalServiceResource; 
 			for(int i=0;i<notificationList.size();i++){
 				
-			    medicalServiceResource = medicalServiceResourceService.getMedicalServiceResource(notificationList.get(i).getId());
-				Resource resource = resourceService.getResourceById(medicalServiceResource.getResource().getResourceId());
+				Resource resource = null;
+				
+				if (notificationList.get(i).getTypeOfNotification().equals("MSJ")) {
+					DeviceMessage deviceMessage = deviceMessageService.getDeviceMessage(notificationList.get(i).getId());
+					resource = resourceService.getResourceByImei(deviceMessage.getDevice().getImei());
+				}
+				
+				if (notificationList.get(i).getTypeOfNotification().equals("PRN")) {
+					MedicalServiceResource medicalServiceResource;
+					medicalServiceResource = medicalServiceResourceService.getMedicalServiceResource(notificationList.get(i).getId());
+					logger.info("Notification sent MedicalServiceResourceID: " + medicalServiceResource.getMedicalServiceResourceId());
+					resource = resourceService.getResourceById(medicalServiceResource.getResource().getResourceId());
+				}
+				logger.info("Notification sent Resource: " + resource.getResourceId());
+			    //medicalServiceResource = medicalServiceResourceService.getMedicalServiceResource(notificationList.get(i).getId());
+				//Resource resource = resourceService.getResourceById(medicalServiceResource.getResource().getResourceId());
 					
 				AsyncRestTemplate asycTemp = new AsyncRestTemplate();
 					

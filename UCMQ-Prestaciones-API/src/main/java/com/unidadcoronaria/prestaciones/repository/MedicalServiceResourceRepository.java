@@ -46,5 +46,8 @@ public interface MedicalServiceResourceRepository extends CrudRepository<Medical
     
     @Query(value = "Select * From Prest_TYP_GetCoberturaDetalle(:medicalServiceId)", nativeQuery = true) 
     public String getPlanDetail(@Param("medicalServiceId") Integer medicalServiceId);
+    
+    @Query(value = "Select * From PrestRec_PDC_SetRecibido(:medicalServiceResourceId, :received)", nativeQuery = true) 
+    public void setMedicalServiceResourceReceived(@Param("medicalServiceResourceId") Integer medicalServiceResourceId, @Param("received") char received );
   
 }

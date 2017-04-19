@@ -35,7 +35,7 @@ public class DeviceMessageController {
 	
 	@RequestMapping(value = "/deviceMessage/{guardId}/messages",  method = RequestMethod.GET)
 	@ResponseBody
-	List<DeviceMessage> listMedicalServiceResourcePending(@PathVariable("guardId") Integer guardId, @RequestHeader(value = Constants.AUTHORIZATION_HEADER) final String token) {
+	List<DeviceMessage> listDeviceMessage(@PathVariable("guardId") Integer guardId, @RequestHeader(value = Constants.AUTHORIZATION_HEADER) final String token) {
 		this.authorizationService.validateToken(token);
 		Resource resource = resourceService.getResourceByImei(token);
 		return this.deviceMessageService.getDeviceMessageList(guardId, resource.getDevice().getDeviceId());

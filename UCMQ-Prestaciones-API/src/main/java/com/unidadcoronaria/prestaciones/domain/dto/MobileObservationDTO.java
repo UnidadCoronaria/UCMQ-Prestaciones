@@ -4,6 +4,7 @@ public class MobileObservationDTO {
 	
 	private Integer typeMobileObservationId;
 	private String observation;
+	private Boolean state;
 	
 	public Integer getTypeMobileObservationId() {
 		return typeMobileObservationId;
@@ -17,6 +18,12 @@ public class MobileObservationDTO {
 	}
 	public void setObservation(String observation) {
 		this.observation = observation;
+	}
+	public Boolean getState() {
+		return state;
+	}
+	public void setState(Boolean state) {
+		this.state = state;
 	}
 	 
 }

@@ -86,6 +86,7 @@ public class MedicalServiceResourceController {
 	@ResponseBody  
 	public MedicalServiceResource getMedicalServiceResourceById(@PathVariable("medicalServiceResourceId") Integer medicalServiceResourceId, @RequestHeader(value = Constants.AUTHORIZATION_HEADER) final String token) {
 		this.authorizationService.validateToken(token);
+		medicalServiceResourceService.setMedicalServiceResourceReceived(medicalServiceResourceId, 'T');
 		return medicalServiceResourceService.getMedicalServiceResource(medicalServiceResourceId);
 	}
 	

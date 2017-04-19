@@ -23,5 +23,7 @@ public interface MedicalServiceResourceService {
 	public void closeMedicalServiceResource(CloseMedicalServiceResourceDTO closeMedicalServiceResourceDTO);
 	
 	Integer getMedicalServicesId(Integer medicalServiceResourceId);
+	
+	public void setMedicalServiceResourceReceived(Integer medicalServiceResourceId, char received);
 
 }

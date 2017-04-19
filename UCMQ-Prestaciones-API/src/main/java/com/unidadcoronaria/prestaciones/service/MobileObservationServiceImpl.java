@@ -32,29 +32,31 @@ public class MobileObservationServiceImpl implements MobileObservationService {
 		try {
 			
 			for(int i=0;i<dto.size();i++){	
-				
-				MobileObservation mobileObservation = new MobileObservation();
-				TypeMobileObservation typeMobileObservation = new TypeMobileObservation();
-				typeMobileObservation.setTypeMobileObservationId(dto.get(i).getTypeMobileObservationId());
-				Guard guard = new Guard();
-				guard.setGuardId(guardId);
-				Mobile mobile = new Mobile();
-				mobile.setMobileId(resource.getMobile().getMobileId());
+				if (!dto.get(i).getState())  {
+					MobileObservation mobileObservation = new MobileObservation();
+					TypeMobileObservation typeMobileObservation = new TypeMobileObservation();
+					typeMobileObservation.setTypeMobileObservationId(dto.get(i).getTypeMobileObservationId());
+					Guard guard = new Guard();
+					guard.setGuardId(guardId);
+					Mobile mobile = new Mobile();
+					mobile.setMobileId(resource.getMobile().getMobileId());
 
-				SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm");
-				SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
-				Date date = new Date();
-				String timeAsString = timeFormatter.format(date);
+					SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm");
+					SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+					Date date = new Date();
+					String timeAsString = timeFormatter.format(date);
 
-				mobileObservation.setMobile(mobile);
-				mobileObservation.setTypeMobileObservation(typeMobileObservation);
-				mobileObservation.setGuard(guard);
-				mobileObservation.setObservation(dto.get(i).getObservation());
-				mobileObservation.setDateTime(dateFormatter.parse(dateFormatter.format(date)));
-				mobileObservation.setDate(dateFormatter.parse(dateFormatter.format(date)));
-				mobileObservation.setTime(timeAsString);
+					mobileObservation.setMobile(mobile);
+					mobileObservation.setTypeMobileObservation(typeMobileObservation);
+					mobileObservation.setGuard(guard);
+					mobileObservation.setObservation(dto.get(i).getObservation());
+					mobileObservation.setDateTime(dateFormatter.parse(dateFormatter.format(date)));
+					mobileObservation.setDate(dateFormatter.parse(dateFormatter.format(date)));
+					mobileObservation.setTime(timeAsString);
 
-				mobileObservationRepository.save(mobileObservation);			
+					mobileObservationRepository.save(mobileObservation);	
+				}
+						
 			}
 			
 		} catch (Exception e) {
